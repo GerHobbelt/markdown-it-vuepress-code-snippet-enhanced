@@ -5,7 +5,7 @@ const TRANSCLUDE_LINE = 'TRANSCLUDE_LINE'
 const TRANSCLUDE_TAG = 'TRANSCLUDE_TAG'
 
 module.exports = function (md, options) {
-  const _root = options && options.root ? options.root : process.cwd()
+  const _root = options && options.root ? options.root : process.argv[3]
 
   const fileExists = f => {
     return fs.existsSync(f)

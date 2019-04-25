@@ -1,5 +1,5 @@
 {
-  "name": "markdown-it-vuepress-code-snippet-enhanced",
+  "name": "@timaschew/markdown-it-vuepress-code-snippet-enhanced",
   "version": "1.0.1",
   "description": "Easily import code snippets for Vuepress",
   "main": "index.js",
