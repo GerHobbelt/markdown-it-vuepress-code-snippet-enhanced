@@ -1,8 +1,10 @@
 const fs = require('fs')
 
 const TRANSCLUDE_WITH = 'TRANSCLUDE_WITH'
+const TRANSCLUDE_AUTO = 'TRANSCLUDE_AUTO'
 const TRANSCLUDE_LINE = 'TRANSCLUDE_LINE'
 const TRANSCLUDE_TAG = 'TRANSCLUDE_TAG'
+const NO_LINES_MATCHED = 'No lines matched.'
 
 module.exports = function (md, options) {
   const _root = options && options.root ? options.root : process.argv[3]
@@ -49,9 +51,10 @@ module.exports = function (md, options) {
     options
   }) => ({
     hasHighlight: options.highlight || false,
-    hasTransclusion: options.transclude || options.transcludeWith || options.transcludeTag || false,
+    hasTransclusion: options.transclude || options.transcludeWith || options.transcludeAuto || options.transcludeTag || false,
     get transclusionType () {
       if (options.transcludeWith) return TRANSCLUDE_WITH
+      if (options.transcludeAuto) return TRANSCLUDE_AUTO
       if (options.transcludeTag) return TRANSCLUDE_TAG
       if (options.transclude) return TRANSCLUDE_LINE
     },
@@ -96,12 +99,28 @@ module.exports = function (md, options) {
       }
     } else if (transcludeType === TRANSCLUDE_WITH) {
       const t = options.transcludeWith
-      const tag = new RegExp(t)
+      const tag = new RegExp(`(?:###|\\/\\/\\/)\\s*\\[${t}\\]`)
       let matched = false
 
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i]
+        if (tag.test(line)) {
+          matched = !matched
+          continue
+        }
 
+        if (matched) {
+          _content += line + '\n'
+        }
+      }
+    } else if (transcludeType === TRANSCLUDE_AUTO) {
+      // TOOD: why the fuck this doesn't work?
+      const t = options.transcludeAuto
+      const tag = new RegExp(`(?:###|\\/\\/\\/)\\s*\\[${t}\\]`)
+      let matched = false
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i]
         if (tag.test(line)) {
           matched = !matched
           continue
@@ -112,8 +131,7 @@ module.exports = function (md, options) {
         }
       }
     }
-
-    return _content === '' ? 'No lines matched.' : _content
+    return _content === '' ? NO_LINES_MATCHED : _content
   }
 
   function parser (state, startLine, endLine, silent) {
@@ -139,6 +157,9 @@ module.exports = function (md, options) {
     const token = state.push('fence', 'code', 0)
     token.info = (d.options.lang || d.file.ext) + opts.meta
     token.content = d.fileExists && opts.hasTransclusion ? contentTransclusion(d, opts.transclusionType) : d.content
+    if (token.content == NO_LINES_MATCHED) {
+      console.warn(NO_LINES_MATCHED, 'for', d.file.path)
+    }
     token.markup = '```'
     token.map = [startLine, startLine + 1]
 
