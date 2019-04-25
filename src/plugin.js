@@ -158,7 +158,7 @@ module.exports = function (md, options) {
     token.info = (d.options.lang || d.file.ext) + opts.meta
     token.content = d.fileExists && opts.hasTransclusion ? contentTransclusion(d, opts.transclusionType) : d.content
     if (token.content == NO_LINES_MATCHED) {
-      console.warn(NO_LINES_MATCHED, 'for', d.file.path)
+      console.warn(NO_LINES_MATCHED, 'Filepath:', d.file.path, 'options:', d.options)
     }
     token.markup = '```'
     token.map = [startLine, startLine + 1]
