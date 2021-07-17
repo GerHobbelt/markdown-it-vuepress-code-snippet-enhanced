@@ -1,7 +1,7 @@
 {
-  "name": "@gerhobbelt/markdown-it-vuepress-code-snippet-enhanced",
+  "name": "@gerhobbelt/markdown-it-code-snippet-enhanced",
   "version": "2.0.1-1",
-  "description": "Easily import code snippets for Vuepress",
+  "description": "Easily import code snippets",
   "keywords": [
     "markdown-it-plugin",
     "markdown-it",
