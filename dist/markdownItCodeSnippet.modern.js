@@ -1,4 +1,4 @@
-/*! markdown-it-code-snippet-enhanced 2.0.1-2 https://github.com//GerHobbelt/markdown-it-code-snippet-enhanced @license MIT */
+/*! markdown-it-code-snippet-enhanced 2.0.1-3 https://github.com//GerHobbelt/markdown-it-code-snippet-enhanced @license MIT */
 
 import fs from 'fs';
 import path from 'path';

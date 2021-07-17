@@ -1,4 +1,4 @@
-/*! markdown-it-code-snippet-enhanced 2.0.1-2 https://github.com//GerHobbelt/markdown-it-code-snippet-enhanced @license MIT */
+/*! markdown-it-code-snippet-enhanced 2.0.1-3 https://github.com//GerHobbelt/markdown-it-code-snippet-enhanced @license MIT */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('fs'), require('path')) :
