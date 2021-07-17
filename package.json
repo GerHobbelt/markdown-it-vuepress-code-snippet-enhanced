@@ -1,6 +1,6 @@
 {
   "name": "@gerhobbelt/markdown-it-code-snippet-enhanced",
-  "version": "2.0.1-1",
+  "version": "2.0.1-2",
   "description": "Easily import code snippets",
   "keywords": [
     "markdown-it-plugin",
