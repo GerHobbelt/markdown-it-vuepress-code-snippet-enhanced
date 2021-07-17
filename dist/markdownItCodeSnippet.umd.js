@@ -1,9 +1,9 @@
-/*! markdown-it-vuepress-code-snippet-enhanced 2.0.1-1 https://github.com//GerHobbelt/markdown-it-vuepress-code-snippet-enhanced @license MIT */
+/*! markdown-it-code-snippet-enhanced 2.0.1-1 https://github.com//GerHobbelt/markdown-it-code-snippet-enhanced @license MIT */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('fs'), require('path')) :
   typeof define === 'function' && define.amd ? define(['fs', 'path'], factory) :
-  (global = global || self, global.markdownitVuepressCodeSnippetEnhanced = factory(global.fs, global.path));
+  (global = global || self, global.markdownitCodeSnippetEnhanced = factory(global.fs, global.path));
 }(this, (function (fs, path) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
