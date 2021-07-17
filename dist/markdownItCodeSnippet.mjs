@@ -9,7 +9,9 @@ const TRANSCLUDE_LINE = 'TRANSCLUDE_LINE';
 const TRANSCLUDE_TAG = 'TRANSCLUDE_TAG';
 const NO_LINES_MATCHED = 'No lines matched.';
 function plugin(md, options) {
-  options = Object.assign({}, options);
+  options = Object.assign({}, {
+    throwOnError: true
+  }, options);
 
   function getRootPath() {
     return options.root || process.cwd();
@@ -24,7 +26,14 @@ function plugin(md, options) {
   };
 
   const readFileSync = f => {
-    return fileExists(f) ? fs.readFileSync(f).toString() : `Not Found: ${f}`;
+    const x = fileExists(f);
+    const msg = x ? fs.readFileSync(f).toString() : `Not Found: ${f}`;
+
+    if (!x && options.throwOnError) {
+      throw new Error(msg);
+    }
+
+    return msg;
   };
 
   function mkRegexSnippet(r) {

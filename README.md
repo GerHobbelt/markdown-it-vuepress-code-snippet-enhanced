@@ -41,7 +41,35 @@ You can now import code snippets into your markdown files with the following syn
 
 
 
-## Options
+## Plugin configuration options
+
+```
+{
+  root: <path represented by '@'> (default: process.cwd())
+  throwOnError: boolean (default: true)
+}
+```
+
+e.g.
+
+```
+import markdownit from '@gerhobbelt/markdown-it';
+import codeSnippetPlugin from '@gerhobbelt/markdown-it-code-snippet-enhanced';
+
+...
+
+const md = markdownit({ linkify: true })
+            .use(codeSnippetPlugin, {
+              root: __dirname,
+              throwOnError: true
+            });
+
+let html = md.render(md_text, env);
+```
+
+
+
+## Markdown Options
 
 ### Language
 

@@ -36,3 +36,33 @@ describe('markdown-it-code-snippets', function () {
     }
   });
 });
+
+
+describe('markdown-it-code-snippets extra checks', function () {
+  it('should fail when the referenced file does not exist', function () {
+    const md = markdownit()
+                .use(codeSnippetPlugin, {
+                  root: __dirname
+                });
+
+    assert.throws(() => {
+      md.render(`
+@[code lang=ruby](@/docs/codeXXX.rb)
+        `);
+    });
+  });
+
+  it('should not fail when throwOnError is FALSE', function () {
+    const md = markdownit()
+                .use(codeSnippetPlugin, {
+                  root: 'ABCDEF',
+                  throwOnError: false
+                });
+
+    const html = md.render(`
+@[code lang=ruby](@/docs/codeXXX.rb)
+    `);
+    assert.ok(html.includes('<pre><code class="language-ruby">Not Found: '));
+    assert.ok(html.includes('/ABCDEF/docs/codeXXX.rb</code></pre>'));
+  });
+});
