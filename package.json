@@ -1,12 +1,9 @@
 {
-  "name": "@timaschew/markdown-it-vuepress-code-snippet-enhanced",
-  "version": "2.0.1",
+  "name": "@gerhobbelt/markdown-it-vuepress-code-snippet-enhanced",
+  "version": "2.0.1-1",
   "description": "Easily import code snippets for Vuepress",
-  "main": "index.js",
-  "scripts": {
-    "dev": "node index.js"
-  },
   "keywords": [
+    "markdown-it-plugin",
     "markdown-it",
     "vuepress",
     "vue",
@@ -14,7 +11,48 @@
   ],
   "author": "Fabio Anselmo <fabio.a.anselmo@gmail.com>",
   "license": "MIT",
+  "type": "module",
+  "source": "./src/plugin.js",
+  "main": "./dist/markdownItCodeSnippet.cjs",
+  "module": "./dist/markdownItCodeSnippet.mjs",
+  "exports": "./dist/markdownItCodeSnippet.modern.js",
+  "unpkg": "./dist/markdownItCodeSnippet.umd.js",
+  "umd:main": "./dist/markdownItCodeSnippet.umd.js",
+  "engines": {
+    "node": ">=12.21"
+  },
+  "scripts": {
+    "build": "make",
+    "test": "make test",
+    "todo": "make todo",
+    "clean": "make clean",
+    "superclean": "make superclean",
+    "doc": "make doc",
+    "lint": "make lint",
+    "lintfix": "make lintfix",
+    "cov": "make report-coverage",
+    "pub": "npm publish --access public"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
-    "markdown-it": "12.0.4"
-  }
+    "@gerhobbelt/markdown-it": "12.1.0-65",
+    "@gerhobbelt/markdown-it-testgen": "0.1.6-23",
+    "@gerhobbelt/prepend-header": "1.1.0-8",
+    "@typescript-eslint/eslint-plugin": "4.28.3",
+    "@typescript-eslint/parser": "4.28.3",
+    "cross-env": "7.0.3",
+    "eslint": "7.30.0",
+    "js-yaml": "4.1.0",
+    "microbundle": "0.13.3",
+    "mocha": "9.0.2",
+    "nyc": "15.1.0"
+  },
+  "reporter": [
+    "lcov",
+    "text",
+    "html",
+    "text-summary"
+  ]
 }

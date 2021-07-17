@@ -12,7 +12,7 @@
 ## Install
 
 ```sh
-npm i -D markdown-it-vuepress-code-snippet-enhanced
+npm i -D @gerhobbelt/markdown-it-vuepress-code-snippet-enhanced
 ```
 
 ---
@@ -25,7 +25,7 @@ In Vuepress `config.js` add the following:
 ```js
 markdown: {
     config: md => {
-        md.use(require('markdown-it-vuepress-code-snippet-enhanced'))
+        md.use(require('@gerhobbelt/markdown-it-vuepress-code-snippet-enhanced'))
     }
 }
 ```
@@ -35,7 +35,7 @@ In Vuepress 1.x `config.js` add the following:
 ```js
 markdown: {
     extendMarkdown: md => {
-        md.use(require('markdown-it-vuepress-code-snippet-enhanced'))
+        md.use(require('@gerhobbelt/markdown-it-vuepress-code-snippet-enhanced'))
     }
 }
 ```
